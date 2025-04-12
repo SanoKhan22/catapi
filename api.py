@@ -1,4 +1,9 @@
 import requests
+from dotenv import load_dotenv
+import os
+# Load environment variables from .env file
+load_dotenv()
+
 
 def get_cat_images(api_key, breed_id='beng', limit=10):
     url = f"https://api.thecatapi.com/v1/images/search?limit={limit}&breed_ids={breed_id}&api_key={api_key}"
@@ -9,8 +14,7 @@ def get_cat_images(api_key, breed_id='beng', limit=10):
     else:
         return None
 
-# Use the function and print the image URLs
-api_key = "live_5jLUuQorNc5pXKkVJVBwFM546S2piyobYHTDPvdneungCXNDVGr8d6ALPacTojkd"
+api_key = os.getenv('CAT_API_KEY')
 images = get_cat_images(api_key)
 
 if images:
